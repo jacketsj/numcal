@@ -29,4 +29,11 @@ namespace direct
 	// U is upper triangular
 	// L and U in the parameters are return values
 	void plu(mat A, mat &P, mat &L, mat &U);
+
+	// compute the Cholesky decomposition of A
+	// i.e. a matrix G such that GG^T=A
+	// and G is lower triangular
+	// We assume A is symmetric positive definite
+	// i.e. that x^TAx>0 for all x
+	mat chol(mat A);
 }

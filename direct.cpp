@@ -94,6 +94,7 @@ void direct::lu(mat A, mat &L, mat &U)
 			// Compute cancellation factor
 			num scale = (A[r_below][r])/(A[r][r]);
 			L[r_below][r] = scale;
+			A[r_below] -= scale * A[r];
 		}
 	}
 
@@ -141,4 +142,22 @@ void direct::plu(mat A, mat &P, mat &L, mat &U)
 	}
 
 	U = A;
+}
+
+mat direct::chol(mat A)
+{
+	// start by computing LU decomposition
+	int m = A.dim(0), n = A.dim(1);
+	assert(m==n);
+	int d = m;
+	mat L, U;
+	lu(A,L,U);
+	// take the sqrt of the diagonals of U
+	vec D_vec = U.diag();
+	for (int i = 0; i < d; ++i)
+		D_vec[i] = sqrt(D_vec.roa(i));
+	mat D_half = mat::diag(D_vec);
+
+	// So L*D_half*D_half*L^T=A
+	return L*D_half;
 }

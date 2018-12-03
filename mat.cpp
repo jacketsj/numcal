@@ -1,3 +1,4 @@
+#include <cassert>
 #include "mat.h"
 
 mat::mat() : m(0), n(0), vals() {}
@@ -103,8 +104,11 @@ mat mat::operator-(const mat &oth) const
 
 mat mat::operator*(const mat &oth) const
 {
-	mat ret = *this;
-	ret *= oth;
+	mat otht = oth.t();
+	mat ret(m, otht.m);
+	for (int i = 0; i < m; ++i)
+		for (int j = 0; j < otht.m; ++j)
+			ret[i][j] = roa(i)*otht[j];
 	return ret;
 }
 
@@ -122,12 +126,7 @@ void mat::operator-=(const mat &oth)
 
 void mat::operator*=(const mat &oth)
 {
-	mat otht = oth.t();
-	mat ret(m, otht.m);
-	for (int i = 0; i < m; ++i)
-		for (int j = 0; j < otht.m; ++j)
-			ret[i][j] = ret[i]*otht[j];
-	(*this) = ret;
+	(*this) = (*this)*oth;
 }
 
 //TODO after svd
@@ -183,6 +182,16 @@ mat mat::t() const
 	for (int i = 0; i < m; ++i)
 		for (int j = 0; j < n; ++j)
 			ret[j][i] = roa(i,j);
+	return ret;
+}
+
+vec mat::diag() const
+{
+	assert(m==n);
+	int d = m;
+	vec ret(d);
+	for (int i = 0; i < d; ++i)
+		ret[i] = roa(i,i);
 	return ret;
 }
 

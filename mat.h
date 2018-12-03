@@ -58,6 +58,8 @@ struct mat
 
 	mat t() const;
 
+	vec diag() const;
+
 	int dim(int i) const;
 
 	static mat same(int m, int n, num val);

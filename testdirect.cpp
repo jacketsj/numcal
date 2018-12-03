@@ -36,4 +36,12 @@ int main()
 		<< "P=" << P.to_string() << "\n"
 		<< "L=" << L.to_string() << "\n"
 		<< "U=" << U.to_string() << "\n";
+
+	A[0] = vec({4,12,-16});
+	A[1] = vec({12,37,-43});
+	A[2] = vec({-16,-43,98});
+
+	cout << "Cholesky decomposition of A=" << A.to_string()
+		<< " is A=GG^T," << endl
+		<< "where G=" << chol(A).to_string() << endl;
 }
