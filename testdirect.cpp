@@ -21,4 +21,7 @@ int main()
 	cout << "solving: " << A.to_string() << "*x=" << b.to_string() << endl;
 
 	cout << "result: x=" << ge(A,b).to_string() << endl;
+	cout << "solving: " << A.to_string() << "*x=" << b.to_string() << endl;
+
+	cout << "with gepp: x=" << gepp(A,b).to_string() << endl;
 }

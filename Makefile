@@ -40,6 +40,7 @@ vec.o: vec.cpp vec.h
 .PHONY: clean
 
 clean:
+	$(RM) testdirect
 	$(RM) testmat
 	$(RM) testvec
 	$(RM) *.o
