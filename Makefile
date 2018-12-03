@@ -7,7 +7,16 @@ OFLAGS=-c
 O=$(CXX) $(CPPFLAGS) $(OFLAGS) # compile object file
 R=$(CXX) $(CPPFLAGS) # compile runnable file
 
-all: testmat testvec
+all: testmat testvec testdirect
+
+testdirect: testdirect.o direct.o mat.o vec.o
+	$R testdirect.o direct.o mat.o vec.o -o testdirect
+
+testdirect.o: testdirect.cpp mat.o vec.o
+	$O testdirect.cpp mat.o vec.o
+
+direct.o: direct.cpp mat.o vec.o
+	$O direct.cpp mat.o vec.o
 
 testmat: testmat.o mat.o vec.o
 	$R testmat.o mat.o vec.o -o testmat

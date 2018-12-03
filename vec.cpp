@@ -4,7 +4,7 @@ vec::vec() : d(0), vals(0) {}
 
 vec::vec(int d) : d(d), vals(d) {}
 
-vec::vec(int d, vector<num> vals)  : d(d), vals(vals) {}
+vec::vec(vector<num> vals)  : d(vals.size()), vals(vals) {}
 
 vec::vec(const vec &oth)
 {
@@ -61,6 +61,22 @@ vec vec::operator^(num oth) const
 	vec ret = *this;
 	ret ^= oth;
 	return ret;
+}
+
+
+vec operator+(num oth, const vec &v)
+{
+	return v + oth;
+}
+
+vec operator-(num oth, const vec &v)
+{
+	return v - oth;
+}
+
+vec operator*(num oth, const vec &v)
+{
+	return v * oth;
 }
 
 

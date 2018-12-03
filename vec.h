@@ -13,7 +13,7 @@ struct vec
 {
 	vec();
 	vec(int d);
-	vec(int d, vector<num> vals);
+	vec(vector<num> vals);
 	vec(const vec &oth);
 	void operator=(const vec &oth);
 
@@ -60,5 +60,9 @@ private:
 	int d;
 	vector<num> vals;
 };
+
+vec operator+(num oth, const vec &v);
+vec operator-(num oth, const vec &v);
+vec operator*(num oth, const vec &v);
 
 #endif
