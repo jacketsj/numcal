@@ -11,6 +11,7 @@ using namespace std;
 
 struct mat
 {
+	mat();
 	mat(int m, int n);
 	mat(const mat &oth);
 	mat(const vec &oth);

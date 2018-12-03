@@ -1,5 +1,7 @@
 #include "mat.h"
 
+mat::mat() : m(0), n(0), vals() {}
+
 mat::mat(int m, int n) : m(m), n(n), vals()
 {
 	for (int i = 0; i < m; ++i)
