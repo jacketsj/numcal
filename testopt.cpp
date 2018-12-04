@@ -21,6 +21,8 @@ int main()
 	num tol = 1e-8;
 
 	vec res = steep(A,b,tol);
+	vec res_cg = cg(A,b,tol);
 	cout << "ans=" << res.to_string() << endl;
 	cout << "diff: " << (res-ge(A,b)).norm() << endl;
+	cout << "diff_cg: " << (res_cg-ge(A,b)).norm() << endl;
 }
