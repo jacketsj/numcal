@@ -24,13 +24,14 @@ struct mat
 	mat operator*(num oth) const;
 	mat operator/(num oth) const;
 
-	//TODO
-	//mat operator^(int k) const;
+	mat operator^(unsigned k) const;
 
 	void operator+=(num oth);
 	void operator-=(num oth);
 	void operator*=(num oth);
 	void operator/=(num oth);
+
+	void operator^=(unsigned k);
 
 	vec operator*(const vec &oth) const;
 
@@ -62,6 +63,7 @@ struct mat
 
 	int dim(int i) const;
 
+	static mat iden(int d);
 	static mat same(int m, int n, num val);
 	static mat one(int m, int n);
 	static mat zero(int m, int n);

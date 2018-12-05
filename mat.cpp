@@ -56,8 +56,20 @@ mat mat::operator/(num oth) const
 	return ret;
 }
 
-//TODO
-//mat mat::operator^(int k) const
+mat mat::operator^(unsigned k) const
+{
+	int d = m;
+	assert (d == n);
+	mat ret = iden(d);
+	mat exp = (*this);
+	for (; k > 0; k /= 2)
+	{
+		if (k % 2 == 1)
+			ret *= exp;
+		exp *= exp;
+	}
+	return ret;
+}
 
 void mat::operator+=(num oth)
 {
@@ -78,6 +90,11 @@ void mat::operator/=(num oth)
 {
 	for (auto& a : vals)
 		a /= oth;
+}
+
+void mat::operator^=(unsigned k)
+{
+	(*this) = (*this) ^ k;
 }
 
 vec mat::operator*(const vec &oth) const
@@ -200,6 +217,11 @@ int mat::dim(int i) const
 	if (i)
 		return n;
 	return m;
+}
+
+mat mat::iden(int d)
+{
+	return diag(vec::one(d));
 }
 
 mat mat::same(int m, int n, num val)

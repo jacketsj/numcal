@@ -7,7 +7,16 @@ OFLAGS=-c
 O=$(CXX) $(CPPFLAGS) $(OFLAGS) # compile object file
 R=$(CXX) $(CPPFLAGS) # compile runnable file
 
-all: testmat testvec testdirect testqr testopt
+all: testmat testvec testdirect testqr testopt testeig
+
+testeig: testeig.o eig.o mat.o vec.o
+	$R testeig.o eig.o mat.o vec.o -o testeig
+
+testeig.o: testeig.cpp eig.o mat.o vec.o
+	$O testeig.cpp eig.o mat.o vec.o
+
+eig.o: qr.cpp eig.h mat.o vec.o
+	$O eig.cpp mat.o vec.o
 
 testopt: testopt.o opt.o mat.o vec.o direct.o
 	$R testopt.o opt.o mat.o vec.o direct.o -o testopt
@@ -58,6 +67,7 @@ vec.o: vec.cpp vec.h
 .PHONY: clean
 
 clean:
+	$(RM) testeig
 	$(RM) testopt
 	$(RM) testqr
 	$(RM) testdirect

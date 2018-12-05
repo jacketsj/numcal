@@ -48,7 +48,7 @@ vec direct::gepp(mat A, vec b)
 		// find the row with the largest first non-zero value
 		int largest_index = r;
 		for (int r_poss = r+1; r_poss < m; ++r_poss)
-			if (abs(A[r_poss][r]) > abs(A[r][r]))
+			if (abs(A[r_poss][r]) > abs(A[largest_index][r]))
 				largest_index = r_poss;
 		// make it the pivot
 		swap(A[r],A[largest_index]);
